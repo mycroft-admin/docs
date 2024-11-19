@@ -1,11 +1,12 @@
 ---
-title: 'Quickstart'
-description: 'Start building awesome documentation in under 5 minutes'
+title: "Installation"
 ---
 
-## Setup your development
+## On Frontend
 
-Learn how to update your docs locally and deploy them to the public.
+If you have a web app with multiple pages where each one triggers a new page refresh then you will most likely need the basic JavaScript method. This means you will not need to create separate actions which trigger when the Messenger will appear or update: The page refresh itself will trigger the action.
+
+To get the Messenger to appear on your web app copy and paste the snippet below before the `</body>` tag on every page where you want the Messenger to appear for website visitors or in your Node.js file.
 
 ### Edit and preview
 
@@ -18,35 +19,35 @@ Learn how to update your docs locally and deploy them to the public.
     [instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
     in your terminal.
   </Accordion>
+
   <Accordion icon="rectangle-terminal" title="Preview changes">
     Previewing helps you make sure your changes look as intended. We built a
     command line interface to render these changes locally. 1. Install the
     [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `mint.json` is): ``` mintlify dev ```
+    documentation changes locally with this command: `npm i -g mintlify`
+    2\. Run the following command at the root of your documentation (where
+    `mint.json` is): `mintlify dev`
   </Accordion>
 </AccordionGroup>
 
-### Deploy your changes
+### Install Mycroft
 
 <AccordionGroup>
+  <Accordion title="For open-access site" icon="globe">
+    [Commit and push your changes to
+    Git](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository#about-git-push)
+    for your changes to update in your docs site. If you push and don't see that
+    the Github app successfully deployed your changes, you can also manually
+    update your docs through our [dashboard](https://dashboard.mintlify.com).
+  </Accordion>
 
-<Accordion icon="message-bot" title="Install our Github app">
-  Our Github app automatically deploys your changes to your docs site, so you
-  don't need to manage deployments yourself. You can find the link to install on
-  your [dashboard](https://dashboard.mintlify.com). Once the bot has been
-  successfully installed, there should be a check mark next to the commit hash
-  of the repo.
-</Accordion>
-<Accordion icon="rocket" title="Push your changes">
-  [Commit and push your changes to
-  Git](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository#about-git-push)
-  for your changes to update in your docs site. If you push and don't see that
-  the Github app successfully deployed your changes, you can also manually
-  update your docs through our [dashboard](https://dashboard.mintlify.com).
-</Accordion>
-
+  <Accordion title="For restricted-access site" icon="lock">
+    Our Github app automatically deploys your changes to your docs site, so you
+    don't need to manage deployments yourself. You can find the link to install on
+    your [dashboard](https://dashboard.mintlify.com). Once the bot has been
+    successfully installed, there should be a check mark next to the commit hash
+    of the repo.
+  </Accordion>
 </AccordionGroup>
 
 ## Update your docs
@@ -54,33 +55,19 @@ Learn how to update your docs locally and deploy them to the public.
 Add content directly in your files with MDX syntax and React components. You can use any of our components, or even build your own.
 
 <CardGroup>
+  <Card title="Style Your Docs" icon="paintbrush" href="/settings/global">
+    Add flair to your docs with personalized branding.
+  </Card>
 
-<Card title="Style Your Docs" icon="paintbrush" href="/settings/global">
-  Add flair to your docs with personalized branding.
-</Card>
+  <Card title="Add API Endpoints" icon="square-code" href="/api-playground/configuration">
+    Implement your OpenAPI spec and enable API user interaction.
+  </Card>
 
-<Card
-  title="Add API Endpoints"
-  icon="square-code"
-  href="/api-playground/configuration"
->
-  Implement your OpenAPI spec and enable API user interaction.
-</Card>
+  <Card title="Integrate Analytics" icon="chart-mixed" href="/analytics/supported-integrations">
+    Draw insights from user interactions with your documentation.
+  </Card>
 
-<Card
-  title="Integrate Analytics"
-  icon="chart-mixed"
-  href="/analytics/supported-integrations"
->
-  Draw insights from user interactions with your documentation.
-</Card>
-
-<Card
-  title="Host on a Custom Domain"
-  icon="browser"
-  href="/settings/custom-domain/subdomain"
->
-  Keep your docs on your own website's subdomain.
-</Card>
-
+  <Card title="Host on a Custom Domain" icon="browser" href="/settings/custom-domain/subdomain">
+    Keep your docs on your own website's subdomain.
+  </Card>
 </CardGroup>
