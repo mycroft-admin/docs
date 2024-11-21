@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Mycroft for Developers",
   "theme": "prism",
   "layout": "sidenav",
   "modeToggle": {
