@@ -34,7 +34,6 @@
     "name": "Get Mycroft",
     "url": "https://getmycroft.com"
   },
-
   "navigation": [
     {
       "group": "Get Started",
@@ -50,5 +49,11 @@
         }
       ]
     }
-  ]
+  ],
+  "footerSocials": {
+    "instagram": "https://www.instagram.com/get_mycroft",
+    "x": "https://x.com/Get_Mycroft",
+    "linkedin": "https://www.linkedin.com/company/getmycroft/",
+    "youtube": "https://www.youtube.com/@GetMycroft"
+  }
 }
