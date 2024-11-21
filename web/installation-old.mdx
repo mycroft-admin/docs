@@ -1,0 +1,112 @@
+---
+title: "Setup on Websites"
+icon: 'globe'
+---
+
+## On Frontend
+
+If you have a web app with multiple pages where each one triggers a new page refresh then you will most likely need the basic JavaScript method. This means you will not need to create separate actions which trigger when the Mycroft will appear or update: The page refresh itself will trigger the action.
+
+To get the Mycroft to appear on your web app copy and paste the snippet below before the `</body>` tag or in the `<head>` tag on every page where you want the Mycroft to appear for website visitors or in your Node.js file.
+
+In the code, you will need your own appID (as shared by the Mycroft team) at the placeholder that says `Your-App-ID`.
+
+
+<AccordionGroup>
+  <Accordion title="Code for open-access site" icon="globe">
+    ```javascript init.js
+<script>
+  const APP_ID = "Your-App-ID" // IMPORTANT: Replace with your App ID
+
+  window.mycroftSettings = {
+    api_base: "https://codenet.mycroft.tech",
+    app_id: APP_ID,
+  };
+</script>
+
+<script>
+        (function () {
+            const w = window, d = document, mc = w.Mycroft;
+
+            if (typeof mc === "function") {
+                mc('update', w.mycroftSettings);  // Update settings if already initialized
+            } else {
+                w.Mycroft = function () { w.Mycroft.q.push(arguments); };  // Queue for API calls
+                w.Mycroft.q = [];  // Initialize call queue
+
+                const loadScript = function () {
+                    fetch(w.mycroftSettings.api_base + '?appID=' + w.mycroftSettings.app_id)
+                        .then(res => res.ok ? res.text() : Promise.reject('Script load failed: ' + res.statusText))
+                        .then(code => { let s = d.createElement('script'); s.text = code; d.head.appendChild(s); })
+                        .catch(err => console.error(err));
+                };
+
+                if (d.readyState === "complete") loadScript();
+                else w.addEventListener ? w.addEventListener('load', loadScript) : w.attachEvent('onload', loadScript);
+            }
+        })();(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/ ' + APP_ID;var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+
+
+</script>
+```
+  </Accordion>
+
+  <Accordion title="For restricted-access site" icon="lock">
+    Our Github app automatically deploys your changes to your docs site, so you
+    don't need to manage deployments yourself. You can find the link to install on
+    your [dashboard](https://dashboard.mintlify.com). Once the bot has been
+    successfully installed, there should be a check mark next to the commit hash
+    of the repo.
+  </Accordion>
+</AccordionGroup>
+
+
+
+
+
+### Edit and preview
+
+<AccordionGroup>
+  <Accordion icon="github" title="Clone your docs locally">
+    During the onboarding process, we created a repository on your Github with
+    your docs content. You can find this repository on our
+    [dashboard](https://dashboard.mintlify.com). To clone the repository
+    locally, follow these
+    [instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+    in your terminal.
+  </Accordion>
+
+  <Accordion icon="rectangle-terminal" title="Preview changes">
+    Previewing helps you make sure your changes look as intended. We built a
+    command line interface to render these changes locally. 1. Install the
+    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
+    documentation changes locally with this command: `npm i -g mintlify`
+    2\. Run the following command at the root of your documentation (where
+    `mint.json` is): `mintlify dev`
+  </Accordion>
+</AccordionGroup>
+
+### Install Mycroft
+
+
+## Update your docs
+
+Add content directly in your files with MDX syntax and React components. You can use any of our components, or even build your own.
+
+<CardGroup>
+  <Card title="Style Your Docs" icon="paintbrush" href="/settings/global">
+    Add flair to your docs with personalized branding.
+  </Card>
+
+  <Card title="Add API Endpoints" icon="square-code" href="/api-playground/configuration">
+    Implement your OpenAPI spec and enable API user interaction.
+  </Card>
+
+  <Card title="Integrate Analytics" icon="chart-mixed" href="/analytics/supported-integrations">
+    Draw insights from user interactions with your documentation.
+  </Card>
+
+  <Card title="Host on a Custom Domain" icon="browser" href="/settings/custom-domain/subdomain">
+    Keep your docs on your own website's subdomain.
+  </Card>
+</CardGroup>

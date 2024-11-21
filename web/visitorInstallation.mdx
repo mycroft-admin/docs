@@ -1,0 +1,26 @@
+---
+sidebarTitle: "Open Access Websites"
+title: "Websites Which Doesn't Require User Login"
+description: "This section will help you set up Mycroft in just a few simple steps, perfect for websites which doesn't require users to login. Get started effortlessly and integrate Mycroft into your website in minutes!"
+mode: "wide"
+---
+
+## Configure your code snippet:
+
+To integrate Mycroft seamlessly into your website, simply copy and paste the following code snippet. Ensure you place it just before the closing `</body>` tag on every page where you want the messenger to appear. This step will activate Mycroft and make it accessible on the website.
+
+<CodeGroup>
+```javascript Javascript
+  <script>
+    window.mycroftSettings = {
+      api_base: "https://codenet.mycroft.tech",
+      app_id: "YOUR_APP_ID",
+    };
+  </script>
+
+  <script>
+    // We pre-filled your app ID in the widget URL: 'https://widget.mycroft.io/widget/YOUR_APP_ID'
+    (function(){var w=window;var ic=w.Mycroft;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.mycroftSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Mycroft=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.mycroft.io/widget/YOUR_APP_ID';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+  </script>
+```
+</CodeGroup>

@@ -1,0 +1,317 @@
+---
+sidebarTitle: "Restricted Access Websites"
+title: "Websites Which Require User Login"
+description: "This section is designed for websites requiring user login, offering a personalized and secure setup. Follow these steps to seamlessly integrate Mycroft with your user accounts."
+mode: "wide"
+---
+
+## 1. Configure your code snippet:
+
+To integrate Mycroft seamlessly into your website, simply copy and paste the following code snippet. Ensure you place it just before the closing `</body>` tag on every page where you want the messenger to appear. This step will activate Mycroft and make it accessible on the website.
+
+<CodeGroup>
+
+  ```javascript Node.js
+  <script>
+    window.mycroftSettings = {
+      api_base: "https://codenet.mycroft.tech",
+      app_id: "YOUR_APP_ID",
+      user_id: user.id, // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
+      name: user.name, // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
+      email: user.email, // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
+      created_at: user.createdAt, // IMPORTANT: Replace "user.createdAt" with the variable you use to capture the user's sign-up date
+    };
+  </script>
+
+  <script>
+    // We pre-filled your app ID in the widget URL: 'https://widget.mycroft.tech/widget/YOUR_APP_ID'
+    (function(){var w=window;var ic=w.Mycroft;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.mycroftSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Mycroft=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.mycroft.tech/widget/YOUR_APP_ID';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+  </script>
+  ```
+
+  ```javascript Rails (Ruby)
+  <script>
+    window.mycroftSettings = {
+      api_base: "https://codenet.mycroft.tech",
+      app_id: "YOUR_APP_ID",
+      user_id: "<%= current_user.id %>", // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
+      name: "<%= current_user.name %>", // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
+      email: "<%= current_user.email %>", // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
+      created_at: "<%= current_user.created_at.to_i %>", // IMPORTANT: Replace "user.createdAt" with the variable you use to capture the user's sign-up date
+    };
+  </script>
+
+  <script>
+    // We pre-filled your app ID in the widget URL: 'https://widget.mycroft.tech/widget/YOUR_APP_ID'
+    (function(){var w=window;var ic=w.Mycroft;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.mycroftSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Mycroft=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.mycroft.tech/widget/YOUR_APP_ID';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+  </script>
+  ```
+
+  ```javascript Django (Python 3)
+  <script>
+    window.mycroftSettings = {
+      api_base: "https://codenet.mycroft.tech",
+      app_id: "YOUR_APP_ID",
+      user_id: "{{ request.user.id|escapejs }}", // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
+      name: "{{ request.user.name|escapejs }}", // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
+      email: "{{ request.user.email|escapejs }}", // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
+      created_at: "{{ request.user.date_joined|date:"U" }}", // IMPORTANT: Replace "user.createdAt" with the variable you use to capture the user's sign-up date
+    };
+  </script>
+
+  <script>
+    // We pre-filled your app ID in the widget URL: 'https://widget.mycroft.tech/widget/YOUR_APP_ID'
+    (function(){var w=window;var ic=w.Mycroft;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.mycroftSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Mycroft=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.mycroft.tech/widget/YOUR_APP_ID';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+  </script>
+  ```
+
+  ```javascript PHP
+  <script>
+    window.mycroftSettings = {
+      api_base: "https://codenet.mycroft.tech",
+      app_id: "YOUR_APP_ID",
+      user_id: <?php echo json_encode($current_user->id) ?>, // IMPORTANT: Replace "user.id" with the variable you use to capture the user's ID
+      name: <?php echo json_encode($current_user->name) ?>, // IMPORTANT: Replace "user.name" with the variable you use to capture the user's name
+      email: <?php echo json_encode($current_user->email) ?>, // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email address
+      created_at: "<?php echo strtotime($current_user->created_at) ?>", // IMPORTANT: Replace "user.createdAt" with the variable you use to capture the user's sign-up date
+    };
+  </script>
+
+  <script>
+    // We pre-filled your app ID in the widget URL: 'https://widget.mycroft.tech/widget/YOUR_APP_ID'
+    (function(){var w=window;var ic=w.Mycroft;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.mycroftSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Mycroft=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.mycroft.tech/widget/YOUR_APP_ID';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+  </script>
+  ```
+
+</CodeGroup>
+
+
+## 2. Generate an HMAC code on your server:
+
+For each logged-in user, you need to generate a secure HMAC (Hash-based Message Authentication Code) on your server. This HMAC ensures the authenticity and integrity of the user data being sent to Mycroft, enabling a secure and reliable connection for personalized messaging.
+
+Now, choose to identify your users using a unique identifier, such as a user ID, email address, or another suitable attribute. While multiple identifiers can be used, it is recommended to use the email address as the primary identifier, as it ensures better consistency and reliability. If multiple unique identifiers are included, the email address will be considered and take precedence over the others.
+
+<Tabs>
+  <Tab title="UserId">
+    <CodeGroup>
+      ```javascript Node.js
+      const crypto = require('crypto');
+
+      const secretKey = 'YOUR_SECRET_KEY'; // IMPORTANT: your web Identity Verification secret key - keep it safe!
+      const userIdentifier = current_user.id.toString(); // IMPORTANT: a UUID to identify your user
+
+      const hash = crypto.createHmac('sha256', secretKey).update(userIdentifier).digest('hex');
+      ```
+
+      ```javascript Rails (Ruby)
+      OpenSSL::HMAC.hexdigest(
+        'sha256', # hash function
+        'YOUR_SECRET_KEY', # IMPORTANT: your web Identity Verification secret key - keep it safe!
+        current_user.id.to_s # IMPORTANT: a UUID to identify your user
+      )
+      ```
+
+      ```java Django (Python 3)
+      import hmac
+      import hashlib
+
+      hmac.new(
+        b'YOUR_SECRET_KEY', # IMPORTANT: your web Identity Verification secret key - keep it safe!
+        bytes(request.user.id, encoding='utf-8'), # IMPORTANT: a UUID to identify your user
+        digestmod=hashlib.sha256 # hash function
+      ).hexdigest()
+      ```
+
+      ```javascript PHP
+      hash_hmac(
+        'sha256', // hash function
+        $user->id, // IMPORTANT: a UUID to identify your user
+        'YOUR_SECRET_KEY' // IMPORTANT: your web Identity Verification secret key - keep it safe!
+      );
+      ```
+      
+      ```javascript Go
+      package main
+
+      import (
+        "crypto/hmac"
+        "crypto/sha256"
+        "encoding/hex"
+        "fmt"
+      )
+
+      func main() {
+        secret := "YOUR_SECRET_KEY"; // IMPORTANT: your web Identity Verification secret key - keep it safe!
+        userIdentifier := user.ID; // IMPORTANT: a UUID to identify your user
+
+        key := []byte(secret)
+        message := []byte(userIdentifier)
+
+        hash := hmac.New(sha256.New, key)
+        hash.Write(message)
+        sha := hash.Sum(nil)
+        hmac := hex.EncodeToString(sha)
+        fmt.Println("Generated HMAC:", hmac)
+      }
+      ```
+      
+      ```javascript Java
+      import javax.crypto.Mac;
+      import javax.crypto.spec.SecretKeySpec;
+      import java.nio.charset.StandardCharsets;
+      import java.security.InvalidKeyException;
+      import java.security.NoSuchAlgorithmException;
+
+      public class HmacGenerator {
+
+          public static void main(String[] args) {
+              String secret = "YOUR_SECRET_KEY"; // IMPORTANT: your web Identity Verification secret key - keep it safe!
+              String userIdentifier = user.id; // IMPORTANT: a UUID to identify your user
+              String hmac = "";
+
+              try {
+                  Mac hmacSha256 = Mac.getInstance("HmacSHA256");
+                  SecretKeySpec secretKey = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+                  hmacSha256.init(secretKey);
+
+                  byte[] hmacBytes = hmacSha256.doFinal(userIdentifier.getBytes(StandardCharsets.UTF_8));
+                  StringBuilder hexString = new StringBuilder();
+                  for (byte b : hmacBytes) {
+                      String hex = String.format("%02x", b);
+                      hexString.append(hex);
+                  }
+                  hmac = hexString.toString();
+              } catch (NoSuchAlgorithmException | InvalidKeyException e) {
+                  e.printStackTrace();
+              }
+
+              System.out.println("Generated HMAC: " + hmac);
+          }
+      }
+      ```
+    </CodeGroup>
+  </Tab>
+  <Tab title="Email">
+    <CodeGroup>
+      ```javascript Node.js
+      const crypto = require('crypto');
+
+      const secretKey = 'YOUR_SECRET_KEY'; // IMPORTANT: your web Identity Verification secret key - keep it safe!
+      const userIdentifier = current_user.email; // IMPORTANT: the email for your user
+
+      const hash = crypto.createHmac('sha256', secretKey).update(userIdentifier).digest('hex');
+      ```
+
+      ```javascript Rails (Ruby)
+      OpenSSL::HMAC.hexdigest(
+        'sha256', # hash function
+        'YOUR_SECRET_KEY', # IMPORTANT: your web Identity Verification secret key - keep it safe!
+        current_user.email # IMPORTANT: the email for your user
+      )
+      ```
+
+      ```java Django (Python 3)
+      import hmac
+      import hashlib
+
+      hmac.new(
+        b'YOUR_SECRET_KEY', # IMPORTANT: your web Identity Verification secret key - keep it safe!
+        bytes(request.user.email, encoding='utf-8'), # IMPORTANT: the email for your user
+        digestmod=hashlib.sha256 # hash function
+      ).hexdigest()
+      ```
+
+      ```javascript PHP
+      hash_hmac(
+        'sha256', // hash function
+        $user->email, // IMPORTANT: the email for your user
+        'YOUR_SECRET_KEY' // IMPORTANT: your web Identity Verification secret key - keep it safe!
+      );
+      ```
+      
+      ```javascript Go
+      package main
+
+      import (
+        "crypto/hmac"
+        "crypto/sha256"
+        "encoding/hex"
+        "fmt"
+      )
+
+      func main() {
+        secret := "YOUR_SECRET_KEY"; // IMPORTANT: your web Identity Verification secret key - keep it safe!
+        userIdentifier := user.Email; // IMPORTANT: the email for your user
+
+        key := []byte(secret)
+        message := []byte(userIdentifier)
+
+        hash := hmac.New(sha256.New, key)
+        hash.Write(message)
+        sha := hash.Sum(nil)
+        hmac := hex.EncodeToString(sha)
+        fmt.Println("Generated HMAC:", hmac)
+      }
+      ```
+      
+      ```javascript Java
+      import javax.crypto.Mac;
+      import javax.crypto.spec.SecretKeySpec;
+      import java.nio.charset.StandardCharsets;
+      import java.security.InvalidKeyException;
+      import java.security.NoSuchAlgorithmException;
+
+      public class HmacGenerator {
+
+          public static void main(String[] args) {
+              String secret = "YOUR_SECRET_KEY"; // IMPORTANT: your web Identity Verification secret key - keep it safe!
+              String userIdentifier = user.email; // IMPORTANT: the email for your user
+              String hmac = "";
+
+              try {
+                  Mac hmacSha256 = Mac.getInstance("HmacSHA256");
+                  SecretKeySpec secretKey = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+                  hmacSha256.init(secretKey);
+
+                  byte[] hmacBytes = hmacSha256.doFinal(userIdentifier.getBytes(StandardCharsets.UTF_8));
+                  StringBuilder hexString = new StringBuilder();
+                  for (byte b : hmacBytes) {
+                      String hex = String.format("%02x", b);
+                      hexString.append(hex);
+                  }
+                  hmac = hexString.toString();
+              } catch (NoSuchAlgorithmException | InvalidKeyException e) {
+                  e.printStackTrace();
+              }
+
+              System.out.println("Generated HMAC: " + hmac);
+          }
+      }
+      ```
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+<Warning>Keep your secret key safe! Never commit it directly to your repository, client-side code, or anywhere a third party can find it.</Warning>
+
+
+## 3. Update your site to send the HMAC:
+
+Whenever you load user data and include the `window.mycroftSettings` code snippet, add a new attribute called `user_hash` and assign the generated HMAC code to it.
+
+```javascript
+<script>
+    window.mycroftSettings = {
+      api_base: "https://codenet.mycroft.tech",
+      app_id: "YOUR_APP_ID",
+      email: "customer@example.com", // IMPORTANT: Replace "user.email" with the variable you use to capture the user's email
+      user_hash: "INSERT_HMAC_VALUE_HERE" // IMPORTANT: Replace this with the HMAC code you generated on your server
+    };
+</script>
+
+<script>
+  // We pre-filled your app ID in the widget URL: 'https://widget.mycroft.tech/widget/YOUR_APP_ID'
+  (function(){var w=window;var ic=w.Mycroft;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.mycroftSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Mycroft=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.mycroft.tech/widget/YOUR_APP_ID';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>
+```
